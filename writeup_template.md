@@ -148,9 +148,11 @@ The overall structure of my selected model is roughly that of the provided Lenet
 
 ####4. Describe how, and identify where in your code, you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
-The code for training the model is located in the eigth cell of the ipython notebook. 
+The code for training the model is located in the 'Train, Validate and Test the Model' cells of Step 2 of the notebook. 
 
-To train the model, I used an ....
+Training consisted of 40 epochs. For each epoch, I divided the training data into batches of 128 and then trained on each batch. For each batch, the error between the predicted classification and actual classification was calculated using the softmax_cross_entropy_with_logits function. The average cross entropy loss was then minimized using the AdamOptimizer. 
+
+For each epoch, loss and accuracy statistics were calculated for the training, validation, and testing data.
 
 ####5. Describe the approach taken for finding a solution. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
