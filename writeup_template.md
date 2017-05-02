@@ -34,7 +34,7 @@ You're reading it! and here is a link to my [project code](https://github.com/ha
 
 ####1. Provide a basic summary of the data set and identify where in your code the summary was done. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.
 
-The code for this step is located in Step 1 of the IPython notebook.  
+The code for this step is located in Step 1 of the notebook.  
 
 I used the numpy library to calculate summary statistics of the traffic
 signs data set:
@@ -94,7 +94,7 @@ The data is as follows:
 
 ####2. Include an exploratory visualization of the dataset and identify where the code is in your code file.
 
-The code for this step is also contained in Step 1 of the IPython notebook.  
+The code for this step is also contained in Step 1 of the notebook.  
 
 Here is an exploratory visualization of the data set. It is a 5 images selected at random from the training set and plotted in color. The title of each image corresponds to its label.
 
@@ -104,13 +104,13 @@ Here is an exploratory visualization of the data set. It is a 5 images selected 
 
 ####1. Describe how, and identify where in your code, you preprocessed the image data. What tecniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc.
 
-The code for this step is contained in Step 2 of the IPython notebook.
+The code for this step is contained in Step 2 of the notebook.
 
 For each of the training images:
-1.) convert to greyscale
-2.) normalize the greyscale image by dividing each pixel value by 255 and subtracting 0.5
-    - results in pixel values between -0.5 and +0.5
-3.) append the normalized greyscale image to a list of preprocessed training images
+ * convert to greyscale
+ * normalize the greyscale image by dividing each pixel value by 255 and subtracting 0.5
+    * results in pixel values between -0.5 and +0.5
+ * append the normalized greyscale image to a list of preprocessed training images
 
 I tried different preprocessing techniques but found that the selected approach performed the best for my chosen neural network architecture. I would like to revisit this at some point; I feel processing the RGB or even the YUV image could lead to potentially better results.
 
@@ -121,20 +121,7 @@ For each the 5 images that were previously plotted, I plotted the preprocessed v
 
 ####2. Describe how, and identify where in your code, you set up training, validation and testing data. How much data was in each set? Explain what techniques were used to split the data into these sets. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, identify where in your code, and provide example images of the additional data)
 
-The code for splitting the data into training and validation sets is contained in the fifth code cell of the IPython notebook.  
-
-To cross validate my model, I randomly split the training data into a training set and validation set. I did this by ...
-
-My final training set had X number of images. My validation set and test set had Y and Z number of images.
-
-The sixth code cell of the IPython notebook contains the code for augmenting the data set. I decided to generate additional data because ... To add more data to the the data set, I used the following techniques because ... 
-
-Here is an example of an original image and an augmented image:
-
-![alt text][image3]
-
-The difference between the original data set and the augmented data set is the following ... 
-
+Training, Validation, and Test data were provided to me. I loaded the provided data in Step 0 of the notebook. A Summarization of the data is provided earlier in this writeup.
 
 ####3. Describe, and identify where in your code, what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
