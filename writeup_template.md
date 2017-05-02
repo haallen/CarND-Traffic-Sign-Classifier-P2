@@ -1,13 +1,5 @@
 #**Traffic Sign Recognition** 
 
-##Writeup Template
-
-###You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
----
-
-**Build a Traffic Sign Recognition Project**
-
 The goals / steps of this project are the following:
 * Load the data set (see below for links to the project data set)
 * Explore, summarize and visualize the data set
@@ -19,8 +11,8 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/visualization.jpg "Visualization"
-[image2]: ./examples/grayscale.jpg "Grayscaling"
+[image1]: ./plots/data_viz.png "Visualization"
+[image2]: ./plots/preproc_data_viz.png "Grayscaling"
 [image3]: ./examples/random_noise.jpg "Random Noise"
 [image4]: ./examples/placeholder.png "Traffic Sign 1"
 [image5]: ./examples/placeholder.png "Traffic Sign 2"
@@ -36,27 +28,75 @@ The goals / steps of this project are the following:
 
 ####1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
 
-You're reading it! and here is a link to my [project code](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
+You're reading it! and here is a link to my [project code](https://github.com/haallen/CarND-Traffic-Sign-Classifier-P2/blob/master/Traffic_Sign_Classifier.ipynb)
 
 ###Data Set Summary & Exploration
 
 ####1. Provide a basic summary of the data set and identify where in your code the summary was done. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.
 
-The code for this step is contained in the second code cell of the IPython notebook.  
+The code for this step is located in Step 1 of the IPython notebook.  
 
-I used the pandas library to calculate summary statistics of the traffic
+I used the numpy library to calculate summary statistics of the traffic
 signs data set:
 
-* The size of training set is ?
-* The size of test set is ?
-* The shape of a traffic sign image is ?
-* The number of unique classes/labels in the data set is ?
+* Number of training examples = 34799
+* Number of testing examples = 4410
+* Number of testing examples = 12630
+* Image data shape = (32, 32, 3)
+* Number of classes = 43
+
+For each class, I also determined the fraction of the training set represented by that class. 
+The data is as follows:
+
+0 0.00517256242995
+1 0.0568981867295
+2 0.0577602804678
+3 0.0362079370097
+4 0.0508635305612
+5 0.0474151556079
+6 0.0103451248599
+7 0.037070030748
+8 0.0362079370097
+9 0.0379321244863
+10 0.0517256242995
+11 0.0336216557947
+12 0.0543119055145
+13 0.0551739992529
+14 0.0198281559815
+15 0.0155176872899
+16 0.0103451248599
+17 0.0284490933648
+18 0.0310353745797
+19 0.00517256242995
+20 0.00862093738326
+21 0.00775884364493
+22 0.00948303112158
+23 0.0129314060749
+24 0.00689674990661
+25 0.0387942182247
+26 0.0155176872899
+27 0.00603465616828
+28 0.0137934998132
+29 0.00689674990661
+30 0.0112072185982
+31 0.0198281559815
+32 0.00603465616828
+33 0.0172131383086
+34 0.0103451248599
+35 0.0310353745797
+36 0.00948303112158
+37 0.00517256242995
+38 0.0534498117762
+39 0.00775884364493
+40 0.00862093738326
+41 0.00603465616828
+42 0.00603465616828
 
 ####2. Include an exploratory visualization of the dataset and identify where the code is in your code file.
 
-The code for this step is contained in the third code cell of the IPython notebook.  
+The code for this step is also contained in Step 1 of the IPython notebook.  
 
-Here is an exploratory visualization of the data set. It is a bar chart showing how the data ...
+Here is an exploratory visualization of the data set. It is a 5 images selected at random from the training set and plotted in color. The title of each image corresponds to its label.
 
 ![alt text][image1]
 
@@ -64,15 +104,20 @@ Here is an exploratory visualization of the data set. It is a bar chart showing 
 
 ####1. Describe how, and identify where in your code, you preprocessed the image data. What tecniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc.
 
-The code for this step is contained in the fourth code cell of the IPython notebook.
+The code for this step is contained in Step 2 of the IPython notebook.
 
-As a first step, I decided to convert the images to grayscale because ...
+For each of the training images:
+1.) convert to greyscale
+2.) normalize the greyscale image by dividing each pixel value by 255 and subtracting 0.5
+    - results in pixel values between -0.5 and +0.5
+3.) append the normalized greyscale image to a list of preprocessed training images
 
-Here is an example of a traffic sign image before and after grayscaling.
+I tried different preprocessing techniques but found that the selected approach performed the best for my chosen neural network architecture. I would like to revisit this at some point; I feel processing the RGB or even the YUV image could lead to potentially better results.
 
+The above steps were repeated for validation and test data.
+
+For each the 5 images that were previously plotted, I plotted the preprocessed version of the image as a sanity check.
 ![alt text][image2]
-
-As a last step, I normalized the image data because ...
 
 ####2. Describe how, and identify where in your code, you set up training, validation and testing data. How much data was in each set? Explain what techniques were used to split the data into these sets. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, identify where in your code, and provide example images of the additional data)
 
