@@ -125,23 +125,26 @@ Training, Validation, and Test data were provided to me. I loaded the provided d
 
 ####3. Describe, and identify where in your code, what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
-The code for my final model is located in the seventh cell of the ipython notebook. 
+The code for my final model is located in the Model Architecture cell of Step 2 of the notebook. 
 
-My final model consisted of the following layers:
+The overall structure of my selected model is roughly that of the provided Lenet architecture.
 
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Input         		| 32x32x3 RGB image   							| 
-| Convolution 3x3     	| 1x1 stride, same padding, outputs 32x32x64 	|
+| Input         		| 32x32x1 greyscale image   							| 
+| Convolution 5x5     	| 1x1 stride, valid padding, outputs 32x32x6 	|
 | RELU					|												|
-| Max pooling	      	| 2x2 stride,  outputs 16x16x64 				|
-| Convolution 3x3	    | etc.      									|
-| Fully connected		| etc.        									|
-| Softmax				| etc.        									|
-|						|												|
-|						|												|
- 
-
+| Max pooling	      	| 2x2 stride,  outputs 14x14x6 				|							| 
+| Convolution 5x5     	| 1x1 stride, valid padding, outputs 10x10x16 	|
+| RELU					|												|
+| Max pooling	      	| 2x2 stride,  outputs 5x5x16 				| 									|
+| Fully connected		| output = 120        									|
+| RELU					|			
+| Dropout					|	keep prob = 50% (configurable)
+| Fully connected		| output = 84       									|
+| RELU					|			
+| Dropout					|	keep prob = 50% (configurable)
+| Fully connected		| output = 10       									|
 
 ####4. Describe how, and identify where in your code, you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
