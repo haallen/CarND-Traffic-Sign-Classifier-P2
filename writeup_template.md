@@ -13,12 +13,11 @@ The goals / steps of this project are the following:
 
 [image1]: ./plots/data_viz.png "Visualization"
 [image2]: ./plots/preproc_data_viz.png "Grayscaling"
-[image3]: ./examples/random_noise.jpg "Random Noise"
-[image4]: ./examples/placeholder.png "Traffic Sign 1"
-[image5]: ./examples/placeholder.png "Traffic Sign 2"
-[image6]: ./examples/placeholder.png "Traffic Sign 3"
-[image7]: ./examples/placeholder.png "Traffic Sign 4"
-[image8]: ./examples/placeholder.png "Traffic Sign 5"
+[image3]: ./plots/yield_13.jpg "Yield Sign"
+[image4]: ./plots/speed_limit_70_4.png "70 Sign"
+[image5]: ./plots/slippery_road_23.jpg "Slippery Road Sign"
+[image6]: ./plots/road_work_25.jpg "Road Work Sign"
+[image7]: ./plots/road_narrows_right_24.jpeg "Road Narrows Right Sign"
 
 ## Rubric Points
 ###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -179,10 +178,12 @@ I also modified my architecture and preprocessing step to try to train on the or
 
 Here are five German traffic signs that I found on the web:
 
-![alt text][image4] ![alt text][image5] ![alt text][image6] 
-![alt text][image7] ![alt text][image8]
+![alt text][image3] ![alt text][image4] ![alt text][image5] 
+![alt text][image6] ![alt text][image7]
 
-The first image might be difficult to classify because ...
+I selected the images based on the frequency that they appear in the training data as well as features about the signs
+
+The first image, Yield, should be easy to classify because it appears frequently in the training set and the doesn't have a lot of detailed features. The second image, 70 km/h speed limit, also appears frequently but I was curious to see if my model can correctly classify the numbers on the sign. The third and fourth signs, slippery and road narrows, appears much less frequently than the first 2 and have interesting, detailed features. The last sign, road work, appears fairly often but also shares overlapping major features with the 3rd and 4th signs (red triangles with white center and black images in them). These features are also common to a lot of the other signs in the set. I was expecting my classifier to have troubles with them.
 
 ####2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. Identify where in your code predictions were made. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
