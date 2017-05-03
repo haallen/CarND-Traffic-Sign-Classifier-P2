@@ -39,7 +39,7 @@ I used the numpy library to calculate summary statistics of the traffic
 signs data set:
 
 * Number of training examples = 34799
-* Number of testing examples = 4410
+* Number of validation examples = 4410
 * Number of testing examples = 12630
 * Image data shape = (32, 32, 3)
 * Number of classes = 43
@@ -183,38 +183,41 @@ Here are five German traffic signs that I found on the web:
 
 I selected the images based on the frequency that they appear in the training data as well as features about the signs
 
-The first image, Yield, should be easy to classify because it appears frequently in the training set and the doesn't have a lot of detailed features. The second image, 70 km/h speed limit, also appears frequently but I was curious to see if my model can correctly classify the numbers on the sign. The third and fourth signs, slippery and road narrows, appears much less frequently than the first 2 and have interesting, detailed features. The last sign, road work, appears fairly often but also shares overlapping major features with the 3rd and 4th signs (red triangles with white center and black images in them). These features are also common to a lot of the other signs in the set. I was expecting my classifier to have troubles with them.
+The first image, Yield, should be easy to classify because it appears frequently in the training set and the doesn't have a lot of detailed features. The second image, 70 km/h speed limit, also appears frequently but I was curious to see if my model could correctly classify the numbers on the sign. The third and fourth signs, slippery and road work, appears much less frequently than the first 2 and also have interesting, detailed features. The last sign, road narrows on right, appears the least often of the bunch and also shares overlapping major features with the 3rd and 4th signs (red triangles with white center and black images in them). These major features are also common to a lot of the other signs in the set. I wouldn't be surprised if my classifier had troubles with them.
 
 ####2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. Identify where in your code predictions were made. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
-The code for making predictions on my final model is located in the tenth cell of the Ipython notebook.
+The code for making predictions on my final model is located in Step 3 of the notebook.
 
 Here are the results of the prediction:
 
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+| Yield       		| Yield  									| 
+| 70 km/h    			| 70 km/h										|
+| Slippery Road					| General Caution												|
+| Road Work	      		| 	Road Work			 				|
+| Road Narrows Right				| Road Narrows Right	      							|
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. The accuracy performance against the test set (93%) is much higher, but I would need to pull a lot more images from the web to do a fair comparison. 4 out of 5 images correctly classified doesn't seem that bad.
 
 ####3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction and identify where in your code softmax probabilities were outputted. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
-The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
+The code for making predictions on my final model is located in Step 3 of the notebook.
 
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
+Here's the output. 
+Sign | top 5 probabilities | class for each of the top 5 probabilites
+Yield Sign |1.00E+00	9.22E-22	2.10E-24	2.07E-28	6.26E-29 |		13	35	38	36	10
+70 km/h Sign |1.00E+00	1.34E-06	2.41E-11	7.42E-15	3.50E-15	|	4	1	0	14	40
+Slippery Sign | 1.00E+00	1.41E-09	2.84E-12	3.01E-15	1.44E-15|		18	25	11	20	38
+Road Work Sign |9.66E-01	3.41E-02	6.26E-05	1.27E-05	4.85E-06|		25	22	30	20	38
+Road Narrows Right Sign | 6.68E-01	1.59E-01	7.78E-02	2.37E-02	2.33E-02 |		24	27	11	21	30
 
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+The model is very certain (near 100%) in its classification for the first 3 images, reasonably certain (97%) in the fourth image, and not very certain (67%) in the last image. The difference between the probability for the selected image and the probability for the next choice also corresponds to this pattern for the 5 images (very large difference between first and second probability for the first three images, small difference for the last image, etc.)
 
+The two images that are of interest to me are the 3rd and 5th images. 
 
-For the second image ... 
+For the third image, the slippery sign, the model was very certain in its classification but the classification was incorrect. It is interesting that the correct class doesn't show up at all in the top 5 probabilities. The selected sign, the general caution sign, does not really appear to have many of the same features as the slippery sign, other than the main shape/color features. If I could get the visualizations (step 4 of the notebook) working, I would try to visualize some of the layers for this to see what is happening.
+
+For the fifth image, the road narrows on right sign, the model was not that confident in its classification but ultimately got it right. The second choice, the pedestrian sign, is surprising because in color, the images do not look similiar, but in greyscale they could potentially share features. Both the road narrows on right sign and the pedestrian sign do not appear frequently in the training set; by augmenting the training set with additional data and retraining, perhaps this issue could be mitigated.
