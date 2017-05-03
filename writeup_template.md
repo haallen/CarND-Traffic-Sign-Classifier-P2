@@ -92,11 +92,13 @@ The data is as follows:
 41 0.00603465616828
 42 0.00603465616828
 
+TODO: figure out how to display the above list properly in markdown.
+
 ####2. Include an exploratory visualization of the dataset and identify where the code is in your code file.
 
 The code for this step is also contained in Step 1 of the notebook.  
 
-Here is an exploratory visualization of the data set. It is a 5 images selected at random from the training set and plotted in color. The title of each image corresponds to its label.
+Here is an exploratory visualization of the data set. It is 5 images selected at random from the training set and plotted in color. The title of each image corresponds to its label.
 
 ![alt text][image1]
 
@@ -132,10 +134,10 @@ The overall structure of my selected model is roughly that of the provided Lenet
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | Input         		| 32x32x1 greyscale image   							| 
-| Convolution 5x5     	| 1x1 stride, valid padding, outputs 32x32x6 	|
+| Convolution 5x5x1x6     	| 1x1 stride, valid padding, outputs 28x28x6 	|
 | RELU					|												|
 | Max pooling	      	| 2x2 stride,  outputs 14x14x6 				|							| 
-| Convolution 5x5     	| 1x1 stride, valid padding, outputs 10x10x16 	|
+| Convolution 5x5x1x16     	| 1x1 stride, valid padding, outputs 10x10x16 	|
 | RELU					|												|
 | Max pooling	      	| 2x2 stride,  outputs 5x5x16 				| 									|
 | Fully connected		| output = 120        									|
@@ -150,9 +152,9 @@ The overall structure of my selected model is roughly that of the provided Lenet
 
 The code for training the model is located in the 'Train, Validate and Test the Model' cells of Step 2 of the notebook. 
 
-Training consisted of 40 epochs. For each epoch, I divided the training data into batches of 128 and then trained on each batch. For each batch, the error between the predicted classification and actual classification was calculated using the softmax_cross_entropy_with_logits function. The average cross entropy loss was then minimized using the AdamOptimizer. 
+Training consisted of 40 epochs. For each epoch, I first shuffled all the training data divided the training data into batches of 128. For each batch, the error between the predicted classification and actual classification was calculated using the softmax_cross_entropy_with_logits function. The average cross entropy loss was then minimized using the AdamOptimizer. The values for the learning rate and dropout probability were found by trying a few values and selecting the values that resulted in the best performance.
 
-For each epoch, loss and accuracy statistics were calculated for the training, validation, and testing data.
+After all batches in an epoch were trained, the model was then evaluated against both the training data and the validation data and then these values, along with the corresponding loss were printed to the screen. This process was then repeated for the specified number of epochs. Once I decided on my final architecture, I evaluated the model against the test data.
 
 ####5. Describe the approach taken for finding a solution. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
